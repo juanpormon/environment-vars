@@ -29,12 +29,14 @@ jobs:
         run: npm test
         continue-on-error: true
       - name: Output information
-        run: echo "..."
+        run: |        
+          echo "db-name: $MONGODB_DB_NAME"
+          echo "secret: $MONGODB_PASSWORD"
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Output information
         run: |        
-          echo "db-name: $MONGODB_DB_NAME"
-          echo "secret: $MONGODB_PASSWORD"
+          echo "db-name: ${{ env.MONGODB_DB_NAME }}"
+          echo "secret: ${{ env.MONGODB_PASSWORD }}"
